@@ -40,7 +40,7 @@ function App() {
     } catch (error) {
       setLoading(false);
       setError(error);
-    }
+    };    
   };
 
   // useEffect es un hook que equivale a componentDidMount. Sirve para que se ejecute la función una vez haya cargado el componente. El segundo parametro de useEffect es un array vacio que sirve para que no se cargue muchas veces el fetchPokemons
@@ -61,7 +61,7 @@ function App() {
     <div className="App">
       <div className="container-pokemons">
         {pokemon.results.map((card) => {
-          return <PokemonCard name={card.name} id={card.url} />;
+          return <PokemonCard name={card.name} id={card.url} key = {card.url} />;
         })}
       </div>
       
