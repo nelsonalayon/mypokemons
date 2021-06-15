@@ -23,7 +23,11 @@ function App() {
 
   let [nextPage, setNextPage] = useState(20);
 
+  
+
   // función asíncrona que llama un endpoint de la api de pokemones. Maneja los estados de load, error y datos
+
+  
 
   const fetchPokemons = async () => {
     setLoading(true);
@@ -37,6 +41,7 @@ function App() {
       setPokemon(data);
       setLoading(false);
       setNextPage(nextPage + 20);
+      
     } catch (error) {
       setLoading(false);
       setError(error);
@@ -61,7 +66,7 @@ function App() {
     <div className="App">
       <div className="container-pokemons">
         {pokemon.results.map((card) => {
-          return <PokemonCard name={card.name} id={card.url} key = {card.url} />;
+          return <PokemonCard name={card.name} id={card.url} key = {card.url}/>;
         })}
       </div>
       
