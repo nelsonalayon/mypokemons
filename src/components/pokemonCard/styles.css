@@ -1,0 +1,11 @@
+.container {
+    width: 250px;
+    overflow: hidden;
+    height: 300px;
+    margin: 20px;
+    
+}
+
+.container img {
+    width: 100%;
+}
