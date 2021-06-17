@@ -6,17 +6,17 @@ function App() {
   // en el hook pockemon guardamos los datos recibidos de la llamada a la api
   // el objeto con results que va como parametro predeterminado se pone para que no falle la aplicacion. Results va a usarse mas adelante
 
-  let [pokemon, setPokemon] = useState({ results: [] });
+  // let [pokemon, setPokemon] = useState({ results: [] });
 
-  let [showPokemon, letShowPokemon] = useState({ results: [] });
+  // let [showPokemon, letShowPokemon] = useState({ results: [] });
 
   // estado que indica si la aplicación está cargando algún dato. Pasa a false cuando los datos han sido correctamente cargados en la llamada asíncrona.
 
-  let [loading, setLoading] = useState(true);
+  // let [loading, setLoading] = useState(true);
 
   // estado que indica si falló la carga de los datos. Pasa a error cuando la llamada asincrona falla (en el catch)
 
-  let [error, setError] = useState(null);
+  // let [error, setError] = useState(null);
 
   // estado que le indica a la llamada a la api que queremos cargar otros 20 pokemones. El parámetro limit indica cuantos pokemones queremos ver en la pagina, cada vez que apretamos el boton cargar mas, este estado se suma 20, para que muestre otros 20 pokemones
 
@@ -39,8 +39,10 @@ function App() {
 
   // useEffect es un hook que equivale a componentDidMount. Sirve para que se ejecute la función una vez haya cargado el componente. El segundo parametro de useEffect es un array vacio que sirve para que no se cargue muchas veces el fetchPokemons
 
+
   useEffect(() => {
     fetchPokemons();
+    
     // showOnlyFewPokemons(nextPage);
   }, []);
 
@@ -79,9 +81,9 @@ function App() {
 
   // si hay error retorna el mensaje del error que queda guardado en el hook error
 
-  if (error) {
-    return `Error: ${error.message}`;
-  }
+  // if (error) {
+  //   return `Error: ${error.message}`;
+  // }
 
   // return retorna la aplicación web como tal donde se muestran los datos recibidos y mostrados mediante una función map de los arrays en javascript
 
