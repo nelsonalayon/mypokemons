@@ -1,5 +1,28 @@
+body {
+  background-color: aliceblue;
+  
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .container-pokemons {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap ;
+}
+
+.load-more {
+  width: 90vw;
+  background:#02c8a5 ;
+  margin-bottom: 20px;
+  border: none;
+  padding: 20px 0;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
 }

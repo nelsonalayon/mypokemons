@@ -5,6 +5,8 @@ const Modal = (props) => {
   if (!props.isOpen) {
     return null;
   }
+
+  
   return ReactDOM.createPortal(
     <div className="modal-container">
       <div className="modal-box">
