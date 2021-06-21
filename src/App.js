@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import PokemonCard from "./components/pokemonCard/pokemonCard";
 import { useMemo } from "react";
@@ -19,11 +19,13 @@ function useSearchPokemones(pokemones) {
   return { query, setQuery, filterPoke };
 }
 
-
 // aplicacion principal
 
 function App() {
-  let [nextPage, setNextPage] = useState(10);
+  let [nextPage, setNextPage] = useState(20);
+
+  const downbutton = useRef(null);
+  // const [show, setShow] = useState(false);
 
   const [state, setState] = useState({
     data: [],
@@ -38,11 +40,30 @@ function App() {
     fetchPokemons();
   }, []);
 
+  // useEffect(
+  //   function () {      
+  //     const observer = new window.IntersectionObserver(
+  //         function  (entries) {          
+  //         const { isIntersecting } = entries[0];
+          
+  //         if (isIntersecting) {       
+            
+  //           showMorePokemons()  
+  //           // observer.disconnect();                        
+  //         }
+  //       },
+  //       { threshold: 0.8 }
+  //     );
+  //     observer.observe(downbutton.current);
+  //   },
+  //   [downbutton]
+  //   );
+
   const fetchPokemons = async () => {
     setState({
       ...state,
       loading: true,
-    });
+    });   
 
     try {
       const response = await fetch(
@@ -52,13 +73,15 @@ function App() {
       const data = await response.json();
       const show = await data.results.slice(0, nextPage);
 
+      setNextPage(nextPage + 20);
+
       setState({
         ...state,
         data: data.results,
         loading: false,
         show,
       });
-      setNextPage(nextPage + 10);
+      
     } catch (error) {
       setState({
         ...state,
@@ -68,7 +91,10 @@ function App() {
     }
   }; 
 
-  // funcion para buscar sin use memo
+ 
+  
+
+  // funcion para buscar pokemones sin usar memo
 
   // let filterPomemons = pokemones.filter((poke) => {
   //   return poke.name.includes(query.toLowerCase());
@@ -91,7 +117,7 @@ function App() {
         </div>        
 
         <div className="container-pokemons">
-          {state.data.map((card) => {
+          {state.show.map((card) => {
             return (
               <PokemonCard name={card.name} id={card.url} key={card.url} data = {state.data}  />
             );
@@ -100,11 +126,11 @@ function App() {
 
         {/* Las dos siguientes líneas preguntan al hook loading si esta true o false para mostrar un cargando o mostrar un boton (si loading esta true aparece un cargando..., si loading esta false aparece un boton de cargar mas) */}
 
-        {/* {!state.loading && (
-          <button className="load-more" onClick={() => fetchPokemons()}>
+        {/* {!state.loading && ( */}
+          <button className="load-more" onClick={() => fetchPokemons()} ref={downbutton}>
             load more
           </button>
-        )} */}
+          {/* )}  */}
         {state.loading && <h1>cargando</h1>}
       </div>
     );
@@ -125,7 +151,7 @@ function App() {
       <div className="container-pokemons">
         {filterPoke.length === 0 ? <h1>{`no hay pokemones que se llamen ${query}`}</h1> :
         filterPoke.map((card) => {
-          return <PokemonCard name={card.name} id={card.url} key={card.url}  />;
+          return <PokemonCard name={card.name} id={card.url} key={card.url} />;
         }) }
       </div>     
 

@@ -2,8 +2,26 @@
     width: 250px;
     overflow: hidden;    
     margin: 20px;
-    min-height: 200px;
-       
+    min-height: 200px;  
+    animation: aparecer 2s;      
+}
+
+@keyframes aparecer {
+  from {
+    transform:opacity(0);
+  } to {
+    transform: opacity(1);
+  }
+  
+}
+
+
+.photo-pokemon {
+  transition: 1s;
+}
+
+.photo-pokemon:hover {
+  transform: scale(1.5)
 }
 
 .container-info {

@@ -5,7 +5,7 @@ import "./styles.css";
 
 const PokemonCard = (props) => {
   const element = useRef(null);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   let [onePokemon, setOnePokemon] = useState({
     sprites: { front_default: "" },
@@ -41,14 +41,13 @@ const PokemonCard = (props) => {
   // intersection observer para scroll infinito
 
   useEffect(
-    function () {
-      // console.log(element.current)
+    function () {      
       const observer = new window.IntersectionObserver(
         function (entries) {
           const { isIntersecting } = entries[0];
           if (isIntersecting) {
             setShow(true);
-            observer.disconnect();            
+            observer.disconnect();                        
           }
         },
         { threshold: 0.8 }
@@ -66,7 +65,7 @@ const PokemonCard = (props) => {
     <div className="container" ref={element}>
       {show && (
         <Fragment>
-          <img
+          <img className = "photo-pokemon"
             src={onePokemon.sprites.front_default}
             alt={onePokemon.name}
           ></img>
