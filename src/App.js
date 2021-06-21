@@ -11,7 +11,7 @@ function useSearchPokemones(pokemones) {
   let [filterPoke, setFilterPoke] = useState(pokemones);
 
   useMemo(() => {
-    const result = pokemones.filter((poke) => {
+    const result = pokemones.filter((poke) => { 
       return poke.name.includes(query.toLowerCase());
     });
     setFilterPoke(result);
@@ -19,8 +19,11 @@ function useSearchPokemones(pokemones) {
   return { query, setQuery, filterPoke };
 }
 
+
+// aplicacion principal
+
 function App() {
-  let [nextPage, setNextPage] = useState(20);
+  let [nextPage, setNextPage] = useState(10);
 
   const [state, setState] = useState({
     data: [],
@@ -55,7 +58,7 @@ function App() {
         loading: false,
         show,
       });
-      setNextPage(nextPage + 20);
+      setNextPage(nextPage + 10);
     } catch (error) {
       setState({
         ...state,
@@ -63,7 +66,7 @@ function App() {
         error: error,
       });
     }
-  };
+  }; 
 
   // funcion para buscar sin use memo
 
@@ -88,20 +91,20 @@ function App() {
         </div>        
 
         <div className="container-pokemons">
-          {state.show.map((card) => {
+          {state.data.map((card) => {
             return (
-              <PokemonCard name={card.name} id={card.url} key={card.url} />
+              <PokemonCard name={card.name} id={card.url} key={card.url} data = {state.data}  />
             );
           })}
         </div>
 
         {/* Las dos siguientes líneas preguntan al hook loading si esta true o false para mostrar un cargando o mostrar un boton (si loading esta true aparece un cargando..., si loading esta false aparece un boton de cargar mas) */}
 
-        {!state.loading && (
+        {/* {!state.loading && (
           <button className="load-more" onClick={() => fetchPokemons()}>
             load more
           </button>
-        )}
+        )} */}
         {state.loading && <h1>cargando</h1>}
       </div>
     );
@@ -122,7 +125,7 @@ function App() {
       <div className="container-pokemons">
         {filterPoke.length === 0 ? <h1>{`no hay pokemones que se llamen ${query}`}</h1> :
         filterPoke.map((card) => {
-          return <PokemonCard name={card.name} id={card.url} key={card.url} />;
+          return <PokemonCard name={card.name} id={card.url} key={card.url}  />;
         }) }
       </div>     
 

@@ -1,11 +1,25 @@
 .container {
     width: 250px;
-    overflow: hidden;
-    
+    overflow: hidden;    
     margin: 20px;
-    
+    min-height: 200px;
+       
 }
 
+.container-info {
+    animation-duration: 1s;
+    animation: aparecer 1s; 
+}
+
+@keyframes aparecer {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+     opacity: 1;
+    }
+  }
 .container img {
     width: 100%;
 }
