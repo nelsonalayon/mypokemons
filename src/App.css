@@ -1,5 +1,7 @@
 body {
-  background-color: aliceblue;
+  background: linear-gradient(217deg, rgba(255,0,0,.3), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.3), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.3), rgba(0,0,255,0) 70.71%);
   
 }
 
@@ -10,6 +12,11 @@ body {
   align-items: center;
 }
 
+.espaciador {
+  height: 20vh;
+}
+
+
 .container-pokemons {
   display: flex;
   justify-content: space-around;
@@ -17,7 +24,7 @@ body {
 }
 
 .load-more {
-  width: 90vw;
+  width: 90%;
   background:#02c8a5 ;
   margin-bottom: 20px;
   border: none;
@@ -27,3 +34,8 @@ body {
   font-size: 22px;
   
 }
+
+.not-found {
+  margin-top: 100px;
+}
+

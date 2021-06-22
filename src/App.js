@@ -3,6 +3,8 @@ import "./App.css";
 import PokemonCard from "./components/pokemonCard/pokemonCard";
 import { useMemo } from "react";
 
+import Loader from './components/loader/Loader'
+
 // funcion para buscar pokemones 
 
 function useSearchPokemones(pokemones) {
@@ -48,7 +50,7 @@ function App() {
           
   //         if (isIntersecting) {       
             
-  //           showMorePokemons()  
+  //           fetchPokemons()  
   //           // observer.disconnect();                        
   //         }
   //       },
@@ -107,14 +109,15 @@ function App() {
   } else if (!query) {
     return (     
       <div className="app">
-        <div>
-          <label>buscar</label>
+        <div className = "field-search">          
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            placeholder= "busca tu pokemon"
           ></input>
-        </div>        
+        </div>
+        <div className = "espaciador"></div>        
 
         <div className="container-pokemons">
           {state.show.map((card) => {
@@ -131,7 +134,7 @@ function App() {
             load more
           </button>
           {/* )}  */}
-        {state.loading && <h1>cargando</h1>}
+        {state.loading && <Loader/>}
       </div>
     );
   }
@@ -139,8 +142,8 @@ function App() {
   return (
     
     <div className="app">
-      <div>
-        <label>buscar</label>
+      <div className = "field-search">
+        
         <input
           type="text"
           value={query}
@@ -149,13 +152,13 @@ function App() {
       </div>
 
       <div className="container-pokemons">
-        {filterPoke.length === 0 ? <h1>{`no hay pokemones que se llamen ${query}`}</h1> :
+        {filterPoke.length === 0 ? <h1 className = "not-found">{`no hay pokemones que se llamen ${query}`}</h1> :
         filterPoke.map((card) => {
           return <PokemonCard name={card.name} id={card.url} key={card.url} />;
         }) }
       </div>     
 
-      {state.loading && <h1>cargando</h1>}
+      {state.loading && <Loader/>}
     </div>
   );
 }

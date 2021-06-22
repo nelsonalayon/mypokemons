@@ -1,0 +1,17 @@
+
+.field-search input {
+    position:fixed;
+    font-size: 1.5em;
+    border: 2px solid rgb(0, 96, 175);
+    padding: 8px;
+    display: inline-block;
+    border-radius: 9999em;
+    margin:20px auto;
+    left: 20px;
+    border: none;
+    
+  }
+
+  .field-search input:focus{
+    outline:none;
+} 

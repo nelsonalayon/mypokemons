@@ -41,13 +41,13 @@ const PokemonCard = (props) => {
   // intersection observer para scroll infinito
 
   useEffect(
-    function () {      
+    function () {
       const observer = new window.IntersectionObserver(
         function (entries) {
           const { isIntersecting } = entries[0];
           if (isIntersecting) {
             setShow(true);
-            observer.disconnect();                        
+            observer.disconnect();
           }
         },
         { threshold: 0.8 }
@@ -62,26 +62,30 @@ const PokemonCard = (props) => {
   };
 
   return (
-    <div className="container" ref={element}>
+    <div  ref={element}>
       {show && (
         <Fragment>
-          <img className = "photo-pokemon"
-            src={onePokemon.sprites.front_default}
-            alt={onePokemon.name}
-          ></img>
-          <p>{props.name}</p>
-          <button onClick={() => handleOpenModal()}>
-            Detalles del pokemon
+          <button onClick={() => handleOpenModal()} className="container">
+            <img
+              className="photo-pokemon"
+              src={onePokemon.sprites.front_default}
+              alt={onePokemon.name}
+            ></img>
+            <div className = "box-name">
+               <h2 >{props.name}</h2>
+            </div>
+           
+
+            <Modal
+              isOpen={modalIsOpen}
+              handleModal={handleOpenModal}
+              id={onePokemon.id}
+              img={onePokemon.sprites.front_default}
+              name={onePokemon.name}
+              type={onePokemon.types[0].type.name}
+              ability={onePokemon.abilities[0].ability.name}
+            />
           </button>
-          <Modal
-            isOpen={modalIsOpen}
-            handleModal={handleOpenModal}
-            id={onePokemon.id}
-            img={onePokemon.sprites.front_default}
-            name={onePokemon.name}
-            type={onePokemon.types[0].type.name}
-            ability={onePokemon.abilities[0].ability.name}
-          />
         </Fragment>
       )}
     </div>
