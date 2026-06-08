@@ -24,15 +24,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 260px;
+  min-height: 400px;
   padding: 20px 0;
 }
 
 .modal-image img {
   width: 100%;
-  max-width: 260px;
+  max-width: 400px;
   height: auto;
-  max-height: 260px;
+  max-height: 400px;
   object-fit: contain;
 }
 
