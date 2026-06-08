@@ -14,12 +14,26 @@
   background: azure;
   display: flex;
   flex-direction: column;
+  width: min(90vw, 700px);
+  min-height: 520px;
+  border-radius: 14px;
+  overflow: hidden;
 }
 
 .modal-image {
-  transform: scale(2, 2);
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 260px;
+  padding: 20px 0;
+}
+
+.modal-image img {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
 }
 
 .modal-title {
@@ -31,10 +45,11 @@
 }
 
 .modal-content {
-  padding: 20px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
    align-items: center;
+   font-size: 1.125rem;
 }
 
 .modal-close {  
